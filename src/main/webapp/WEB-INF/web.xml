@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container, 
+     see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html#d4e194 -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- main servlet -->
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!--<init-param>-->
+            <!--&lt;!&ndash; filter skenující povolené role pro jednotlivé metody &ndash;&gt;-->
+            <!--<param-name>com.sun.jersey.spi.container.ResourceFilters</param-name>-->
+            <!--<param-value>com.sun.jersey.api.container.filter.RolesAllowedResourceFilterFactory</param-value>-->
+        <!--</init-param>-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>PrintService</servlet-name>-->
+        <!--<url-pattern>/ws/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>Destination</web-resource-name>-->
+            <!--<url-pattern>destination</url-pattern>-->
+            <!--<http-method>POST</http-method>-->
+            <!--<http-method>PUT</http-method>-->
+            <!--<http-method>DELETE</http-method>-->
+        <!--</web-resource-collection>-->
+        <!--<auth-constraint>-->
+            <!--<role-name>admin</role-name>-->
+        <!--</auth-constraint>-->
+    <!--</security-constraint>-->
+
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>Flight</web-resource-name>-->
+            <!--<url-pattern>flight</url-pattern>-->
+            <!--<http-method>POST</http-method>-->
+            <!--<http-method>PUT</http-method>-->
+            <!--<http-method>DELETE</http-method>-->
+        <!--</web-resource-collection>-->
+        <!--<auth-constraint>-->
+            <!--<role-name>admin</role-name>-->
+        <!--</auth-constraint>-->
+    <!--</security-constraint>-->
+
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>Reservation</web-resource-name>-->
+            <!--<url-pattern>reservation</url-pattern>-->
+            <!--<http-method>PUT</http-method>-->
+            <!--<http-method>DELETE</http-method>-->
+            <!--<http-method>GET</http-method>-->
+        <!--</web-resource-collection>-->
+        <!--<auth-constraint>-->
+            <!--<role-name>admin</role-name>-->
+            <!--<role-name>manager</role-name>-->
+        <!--</auth-constraint>-->
+    <!--</security-constraint>-->
+
+    <!--&lt;!&ndash; Konfigurace loginu &ndash;&gt;-->
+    <!--<login-config>-->
+        <!--<auth-method>BASIC</auth-method>-->
+        <!--<realm-name>ApplicationRealm</realm-name>-->
+    <!--</login-config>-->
+
+    <!--&lt;!&ndash; Security role &ndash;&gt;-->
+    <!--<security-role>-->
+        <!--<role-name>admin</role-name>-->
+    <!--</security-role>-->
+    <!--<security-role>-->
+        <!--<role-name>manager</role-name>-->
+    <!--</security-role>-->
+
+    <!--<context-param>-->
+        <!--<param-name>resteasy.scan</param-name>-->
+        <!--<param-value>false</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>resteasy.scan.providers</param-name>-->
+        <!--<param-value>false</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>resteasy.scan.resources</param-name>-->
+        <!--<param-value>false</param-value>-->
+    <!--</context-param>-->
+</web-app>

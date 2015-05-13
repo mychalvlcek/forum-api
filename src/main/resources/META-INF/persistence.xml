@@ -1,0 +1,35 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="persist-unit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!-- All persistence classes must be listed -->
+        <class>cz.cvut.fel.aos.forum.entity.Category</class>
+        <class>cz.cvut.fel.aos.forum.entity.Message</class>
+        <class>cz.cvut.fel.aos.forum.entity.Post</class>
+        <class>cz.cvut.fel.aos.forum.entity.Role</class>
+        <class>cz.cvut.fel.aos.forum.entity.Topic</class>
+        <class>cz.cvut.fel.aos.forum.entity.User</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/forum"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+
+            <!--<property name="javax.persistence.jdbc.show_sql" value="true"/>-->
+            <!--<property name="javax.persistence.jdbc.format_sql" value="true"/>-->
+
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+
+            <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-source" value="metadata"/>-->
+            <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/dto.sql" />-->
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
