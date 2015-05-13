@@ -1,5 +1,6 @@
 package cz.cvut.fel.aos.forum.dto;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -11,10 +12,12 @@ public class CategoryDTO extends AbstractDTO {
 
     }
 
-    public CategoryDTO(Long id, String title, List<Long> topics) {
+    public CategoryDTO(Long id, String title, List<Long> topics, Date created, Date updated) {
         this.id = id;
         this.title = title;
         this.topics = topics;
+        this.created = created;
+        this.updated = updated;
     }
 
     public String getTitle() {

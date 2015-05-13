@@ -1,15 +1,8 @@
 package cz.cvut.fel.aos.forum.service;
 
 import cz.cvut.fel.aos.forum.dto.UserDTO;
-
 import java.util.List;
 
-/**
- * Destination service
- *
- * @author Michal Vlček<mychalvlcek@gmail.com>
- * @date 21.10.14
- */
 public interface UserService {
 
     /**

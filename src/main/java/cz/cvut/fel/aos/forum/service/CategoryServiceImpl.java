@@ -1,63 +1,67 @@
 package cz.cvut.fel.aos.forum.service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import cz.cvut.fel.aos.forum.dto.UserDTO;
-import cz.cvut.fel.aos.forum.entity.Role;
-import cz.cvut.fel.aos.forum.entity.User;
+import cz.cvut.fel.aos.forum.dto.*;
+import cz.cvut.fel.aos.forum.entity.*;
 import cz.cvut.fel.aos.forum.helpers.PersistenceTools;
-import cz.cvut.fel.aos.forum.persistence.GenericDao;
-import cz.cvut.fel.aos.forum.persistence.GenericDaoImpl;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserServiceImpl extends AbstractDataAccessService implements UserService {
+public class CategoryServiceImpl extends AbstractDataAccessService implements CategoryService {
 
     @Override
-    public List<UserDTO> getAll() {
-        return PersistenceTools.getUserDtos(genericDao.getAll(User.class));
+    public List<CategoryDTO> getAll() {
+        return PersistenceTools.getCategoryDtos(genericDao.getAll(Category.class));
     }
 
     @Override
-    public List<UserDTO> find(String sort, String filter, int base, int offset) {
+    public List<CategoryDTO> find(String sort, String filter, int base, int offset) {
         if (sort == "") {
             sort = "e.id asc";
         } else {
             sort = "e." + sort.replace(":", " ");
         }
-        return PersistenceTools.getUserDtos(genericDao.getPage(sort, filter, base, offset, User.class));
+        return PersistenceTools.getCategoryDtos(genericDao.getPage(sort, filter, base, offset, Category.class));
     }
 
     @Override
-    public UserDTO get(Long id) {
-        return PersistenceTools.getUserDto(genericDao.getById(id, User.class));
+    public CategoryDTO get(Long id) {
+        return PersistenceTools.getCategoryDto(genericDao.getById(id, Category.class));
     }
 
     @Override
     public void delete(Long id) {
-        genericDao.removeById(id, User.class);
+        genericDao.removeById(id, Category.class);
     }
 
 
     @Override
-    public Long save(UserDTO userDTO) {
-        User user = PersistenceTools.getUserEntity(userDTO);
-        user.addRole(genericDao.getByPropertyUnique("name", "ROLE_USER", Role.class));
+    public Long save(CategoryDTO dto) {
+        Category entity = PersistenceTools.getCategoryEntity(dto);
 
-        return genericDao.saveOrUpdate(user).getId();
+        return genericDao.saveOrUpdate(entity).getId();
     }
 
 
     public Long getCount() {
         return genericDao.getCount(User.class);
     }
+
+//    WebTarget resourceTarget = target.path("/" + id).path("/group").queryParam("findWho",findWho);
+//    Invocation.Builder invocationBuilder = resourceTarget.request(MediaType.APPLICATION_JSON_TYPE);
+//    Response response = invocationBuilder.get();
+//    int status = response.getStatus();
+//
+//    if (logger.isDebugEnabled()) {
+//        logger.debug("geGroups.status = " + status);
+//    }
+//
+//    if (status == 200) {
+//        List<VoterGroupDTO> voters = response.readEntity(new GenericType<List<VoterGroupDTO>>() {
+//        });
+//        response.close();
+//        return voters;
+//    } else {
+//        return new ArrayList<VoterGroupDTO>();
+//    }
 
 //    private GPS getGps(String destination) {
 //        Client client = Client.create();

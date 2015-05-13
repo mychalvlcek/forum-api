@@ -27,6 +27,22 @@ public class PersistenceTools {
         return entity;
     }
 
+    public static CategoryDTO getCategoryDto(Category r) {
+        if(r == null) return null;
+        return new CategoryDTO(r.getId(), r.getTitle(), getIdentifiers(r.getTopics()), r.getCreated(), r.getUpdated());
+    }
+
+    public static Category getCategoryEntity(CategoryDTO dto) {
+        Category entity = new Category();
+
+        if (dto != null) {
+            entity.setId(dto.getId());
+            entity.setTitle(dto.getTitle());
+        }
+
+        return entity;
+    }
+
     public static PostDTO getPostDto(Post p) {
         if(p == null) return null;
         return new PostDTO(p.getId(), p.getTitle(), p.getContent(), getUserDto(p.getAuthor()), getTopicDto(p.getTopic()), p.getCreated(), p.getUpdated());
@@ -66,6 +82,16 @@ public class PersistenceTools {
         }
         return result;
     }
+
+    public static List<CategoryDTO> getCategoryDtos(List<Category> records) {
+        List<CategoryDTO> result = new ArrayList<CategoryDTO>();
+
+        for (Category record : records) {
+            result.add(getCategoryDto(record));
+        }
+        return result;
+    }
+
 
     public static List<TopicDTO> getTopicDtos(List<? extends Topic> records) {
         if (records == null) {
