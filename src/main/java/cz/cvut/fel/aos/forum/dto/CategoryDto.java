@@ -1,9 +1,10 @@
 package cz.cvut.fel.aos.forum.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.List;
 
-
+//@XmlRootElement
 public class CategoryDTO extends AbstractDTO {
     private String title;
     private List<Long> topics;

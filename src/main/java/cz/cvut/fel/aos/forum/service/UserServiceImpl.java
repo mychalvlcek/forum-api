@@ -1,21 +1,10 @@
 package cz.cvut.fel.aos.forum.service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import cz.cvut.fel.aos.forum.dto.UserDTO;
 import cz.cvut.fel.aos.forum.entity.Role;
 import cz.cvut.fel.aos.forum.entity.User;
 import cz.cvut.fel.aos.forum.helpers.PersistenceTools;
-import cz.cvut.fel.aos.forum.persistence.GenericDao;
-import cz.cvut.fel.aos.forum.persistence.GenericDaoImpl;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl extends AbstractDataAccessService implements UserService {

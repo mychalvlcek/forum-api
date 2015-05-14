@@ -1,11 +1,17 @@
 package cz.cvut.fel.aos.forum.dto;
 
+import cz.cvut.fel.aos.forum.helpers.JsonDateSerializer;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class AbstractDTO implements Serializable {
     protected Long id;
+
+    @JsonSerialize(using=JsonDateSerializer.class)
     protected Date created;
+    @JsonSerialize(using=JsonDateSerializer.class)
     protected Date updated;
 
     public Long getId() {

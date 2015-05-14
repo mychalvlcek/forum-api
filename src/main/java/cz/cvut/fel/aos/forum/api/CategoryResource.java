@@ -22,7 +22,7 @@ public class CategoryResource {
 
     @GET
     @Path("/")
-    // @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getRecords(@HeaderParam("X-Filter") String filter,
                                @HeaderParam("X-Order") String order,
                                @HeaderParam("X-Base") String base,
@@ -51,7 +51,7 @@ public class CategoryResource {
 
     @POST
     @Path("/")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON})
     @RolesAllowed("admin")
     public Response save(CategoryDTO dto) {
         service.save(dto);
@@ -60,7 +60,7 @@ public class CategoryResource {
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON})
     @RolesAllowed("admin")
     public Response update(@PathParam("id") Long id, CategoryDTO dto) {
         dto.setId(id);
@@ -70,7 +70,7 @@ public class CategoryResource {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
     public CategoryDTO get(@PathParam("id") Long id) {
         return service.get(id);
     }

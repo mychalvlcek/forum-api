@@ -31,7 +31,7 @@ public class UserResource {
      */
     @GET
     @Path("/")
-    // @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getRecords(@HeaderParam("X-Filter") String filter,
                                     @HeaderParam("X-Order") String order,
                                     @HeaderParam("X-Base") String base,
