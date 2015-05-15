@@ -13,13 +13,8 @@ public class TopicServiceImpl extends AbstractDataAccessService implements Topic
     }
 
     @Override
-    public List<TopicDTO> find(String sort, String filter, int base, int offset) {
-        if (sort == "") {
-            sort = "e.id asc";
-        } else {
-            sort = "e." + sort.replace(":", " ");
-        }
-        return PersistenceTools.getTopicDtos(genericDao.getPage(sort, filter, base, offset, Topic.class));
+    public List<TopicDTO> find(Long catId) {
+        return PersistenceTools.getTopicDtos(genericDao.getByProperty("category", genericDao.getById(catId, Category.class), Topic.class));
     }
 
     @Override

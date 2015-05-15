@@ -9,7 +9,7 @@ public interface TopicService {
 
     public List<TopicDTO> getAll();
 
-    public List<TopicDTO> find(String sort, String filter, int base, int offset);
+    public List<TopicDTO> find(Long catId);
 
     public TopicDTO get(Long id);
 

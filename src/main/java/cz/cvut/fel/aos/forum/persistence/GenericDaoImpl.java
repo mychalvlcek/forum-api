@@ -129,8 +129,6 @@ public class GenericDaoImpl implements GenericDao {
 
     public <ENTITY> ENTITY getByPropertyUnique(String property, Object value, Class<ENTITY> clazz) {
         ENTITY e;
-//        System.out.println("SELECT e FROM " + clazz.getSimpleName() + " e WHERE e." + property + " = :value");
-//        return getEntityManager().createQuery("SELECT e FROM " + clazz.getSimpleName() + " e").getResultList();
         if (value == null) {
             e = clazz.cast(getEntityManager().createQuery("SELECT e FROM " + clazz.getSimpleName() + " e WHERE e." + property + " IS NULL").getSingleResult());
         } else {

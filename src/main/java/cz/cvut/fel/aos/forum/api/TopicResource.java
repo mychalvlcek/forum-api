@@ -23,28 +23,24 @@ public class TopicResource {
     @GET
     @Path("/")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getRecords(@HeaderParam("X-Filter") String filter,
-                               @HeaderParam("X-Order") String order,
-                               @HeaderParam("X-Base") String base,
-                               @HeaderParam("X-Offset") String offset
-    ) {
+    public Response getRecords() {
         List result = null;
-        int baseParam = service.getCount().intValue();
-        int offsetParam = 0;
-        if (base != null) {
-            baseParam = Integer.valueOf(base);
-        }
-        if (offset != null) {
-            offsetParam = Integer.valueOf(offset);
-        }
-        if (order == null) {
-            order = "";
-        }
-
-        result = service.find(order, filter, Integer.valueOf(baseParam), Integer.valueOf(offsetParam));
+        result = service.getAll();
 
         Response.ResponseBuilder rb = Response.status(Status.OK);
         rb.header("X-Count-records", service.getCount());
+        rb.entity(result);
+        return  rb.build();
+    }
+
+    @GET
+    @Path("/category/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getFiltered(@PathParam("id") Long id) {
+        List result = null;
+        result = service.find(id);
+
+        Response.ResponseBuilder rb = Response.status(Status.OK);
         rb.entity(result);
         return  rb.build();
     }
