@@ -14,6 +14,11 @@ public class PersistenceTools {
         return new UserDTO(u.getId(), u.getUserName(), u.getEmail(), getIdentifiers(u.getMessages()), getIdentifiers(u.getPosts()), getIdentifiers(u.getTopics()), getIdentifiers(u.getRoles()), u.getCreated(), u.getUpdated());
     }
 
+    public static UserDTO getUserSimpleDto(User u) {
+        if(u == null) return null;
+        return new UserDTO(u.getId(), u.getUserName(), u.getEmail(), null, null, null, getIdentifiers(u.getRoles()), u.getCreated(), u.getUpdated());
+    }
+
     public static User getUserEntity(UserDTO userDTO) {
         User entity = new User();
 
@@ -50,7 +55,20 @@ public class PersistenceTools {
 
     public static TopicDTO getTopicDto(Topic t) {
         if(t == null) return null;
-        return new TopicDTO(t.getId(), t.getTitle(), getIdentifier(t.getAuthor()), getIdentifier(t.getCategory()), getIdentifiers(t.getPosts()), t.getCreated(), t.getUpdated());
+        return new TopicDTO(t.getId(), t.getTitle(), getIdentifier(t.getAuthor()), getUserSimpleDto(t.getAuthor()), getIdentifier(t.getCategory()), getIdentifiers(t.getPosts()), t.getCreated(), t.getUpdated());
+    }
+
+    public static Topic getTopicEntity(TopicDTO dto, User user, Category category) {
+        Topic entity = new Topic();
+
+        if (dto != null) {
+            entity.setId(dto.getId());
+            entity.setTitle(dto.getTitle());
+            entity.setAuthor(user);
+            entity.setCategory(category);
+        }
+
+        return entity;
     }
 
     public static MessageDTO getMessageDto(Message m) {
