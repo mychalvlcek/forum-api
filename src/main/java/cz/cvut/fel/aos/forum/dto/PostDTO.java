@@ -8,28 +8,56 @@ import java.util.Date;
 public class PostDTO extends AbstractDTO {
     private String title;
     private String content;
-    private UserDTO author;
+    private Long author;
+    private Long topicId;
+    private UserDTO user;
     private TopicDTO topic;
 
     public PostDTO() {
     }
 
-    public PostDTO(Long id, String title, String content, UserDTO author, TopicDTO topic, Date created, Date updated) {
+    public PostDTO(Long id, String title, String content, Long author, Long topic, Date created, Date updated) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.topicId = topic;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public PostDTO(Long id, String title, String content, UserDTO user, TopicDTO topic, Date created, Date updated) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
         this.topic = topic;
         this.created = created;
         this.updated = updated;
     }
 
-    public UserDTO getAuthor() {
+    public Long getAuthor() {
         return author;
     }
 
-    public void setAuthor(UserDTO author) {
+    public void setAuthor(Long author) {
         this.author = author;
+    }
+
+    public Long getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(Long topicId) {
+        this.topicId = topicId;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public TopicDTO getTopic() {

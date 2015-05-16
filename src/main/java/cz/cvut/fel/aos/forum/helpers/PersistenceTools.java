@@ -53,6 +53,20 @@ public class PersistenceTools {
         return new PostDTO(p.getId(), p.getTitle(), p.getContent(), getUserDto(p.getAuthor()), getTopicDto(p.getTopic()), p.getCreated(), p.getUpdated());
     }
 
+    public static Post getPostEntity(PostDTO dto, User user, Topic topic) {
+        Post entity = new Post();
+
+        if (dto != null) {
+            entity.setId(dto.getId());
+            entity.setTitle(dto.getTitle());
+            entity.setAuthor(user);
+            entity.setContent(dto.getContent());
+            entity.setTopic(topic);
+        }
+
+        return entity;
+    }
+
     public static TopicDTO getTopicDto(Topic t) {
         if(t == null) return null;
         return new TopicDTO(t.getId(), t.getTitle(), getIdentifier(t.getAuthor()), getUserSimpleDto(t.getAuthor()), getIdentifier(t.getCategory()), getIdentifiers(t.getPosts()), t.getCreated(), t.getUpdated());
