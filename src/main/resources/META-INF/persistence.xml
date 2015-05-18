@@ -6,12 +6,12 @@
     <persistence-unit name="persist-unit" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <!-- All persistence classes must be listed -->
-        <class>cz.cvut.fel.aos.forum.entity.Category</class>
-        <class>cz.cvut.fel.aos.forum.entity.Message</class>
-        <class>cz.cvut.fel.aos.forum.entity.Post</class>
-        <class>cz.cvut.fel.aos.forum.entity.Role</class>
-        <class>cz.cvut.fel.aos.forum.entity.Topic</class>
-        <class>cz.cvut.fel.aos.forum.entity.User</class>
+        <class>cz.cvut.fel.wa2.forum.entity.Category</class>
+        <class>cz.cvut.fel.wa2.forum.entity.Message</class>
+        <class>cz.cvut.fel.wa2.forum.entity.Post</class>
+        <class>cz.cvut.fel.wa2.forum.entity.Role</class>
+        <class>cz.cvut.fel.wa2.forum.entity.Topic</class>
+        <class>cz.cvut.fel.wa2.forum.entity.User</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/forum"/>
