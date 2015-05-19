@@ -49,7 +49,7 @@ public class UserServiceImpl extends AbstractDataAccessService implements UserSe
     @Override
     public Long save(UserDTO userDTO) {
         User user = PersistenceTools.getUserEntity(userDTO);
-        user.addRole(genericDao.getByPropertyUnique("name", "ROLE_USER", Role.class));
+//        user.addRole(genericDao.getByPropertyUnique("name", "ROLE_USER", Role.class));
 
         return genericDao.saveOrUpdate(user).getId();
     }

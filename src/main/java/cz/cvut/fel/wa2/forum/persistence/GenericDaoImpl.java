@@ -107,13 +107,13 @@ public class GenericDaoImpl implements GenericDao {
         try {
             transaction.begin();
 
-            em.merge(o);
+//            em.merge(o);
 
-//            if (o.getId() == null) {
-//                em.persist(o);
-//            } else {
-//                em.merge(o);
-//            }
+            if (o.getId() == null) {
+                em.persist(o);
+            } else {
+                em.merge(o);
+            }
 
             transaction.commit();
         } catch (Exception e) {

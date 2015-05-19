@@ -40,13 +40,13 @@ public class UserResource {
                                     @HeaderParam("X-Offset") String offset
                                     ) {
 
-        try {
-            Producer producer = new Producer("queue");
-            producer.sendMessage("msg");
-            producer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Producer producer = new Producer("queue");
+//            producer.sendMessage("msg");
+//            producer.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         List result = null;
         int baseParam = service.getCount().intValue();
