@@ -69,6 +69,18 @@ public class UserResource {
         return  rb.build();
     }
 
+    @GET
+    @Path(value = "/login")
+    public Response getLogin(@QueryParam("email") String email,
+                             @QueryParam("password") String password) {
+        try {
+            UserDTO u = service.login(email, email);
+            return Response.status(Status.OK).entity(u).type(MediaType.APPLICATION_JSON).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
     /**
      * Save new record
      * @param dto record

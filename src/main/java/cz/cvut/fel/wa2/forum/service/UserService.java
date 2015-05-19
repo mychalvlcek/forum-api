@@ -21,6 +21,8 @@ public interface UserService {
      */
     public List<UserDTO> find(String sort, String filter, int base, int offset);
 
+    public UserDTO login(String email, String password) throws Exception;
+
     /**
      * Retrieves entity by id
      * @param id identifier of entity

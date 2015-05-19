@@ -1,7 +1,10 @@
 package cz.cvut.fel.wa2.forum.service;
 
+import cz.cvut.fel.wa2.forum.dto.TopicDTO;
 import cz.cvut.fel.wa2.forum.dto.UserDTO;
+import cz.cvut.fel.wa2.forum.entity.Category;
 import cz.cvut.fel.wa2.forum.entity.Role;
+import cz.cvut.fel.wa2.forum.entity.Topic;
 import cz.cvut.fel.wa2.forum.entity.User;
 import cz.cvut.fel.wa2.forum.helpers.PersistenceTools;
 
@@ -22,6 +25,14 @@ public class UserServiceImpl extends AbstractDataAccessService implements UserSe
             sort = "e." + sort.replace(":", " ");
         }
         return PersistenceTools.getUserDtos(genericDao.getPage(sort, filter, base, offset, User.class));
+    }
+
+    @Override
+    public UserDTO login(String email, String password) throws Exception {
+        User user = genericDao.getByPropertyUnique("email", email, User.class);
+//        if (!user.hasPassword(password))
+//            throw new Exception("bad credentials");
+        return PersistenceTools.getUserDto(user);
     }
 
     @Override
