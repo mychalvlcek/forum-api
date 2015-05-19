@@ -9,7 +9,9 @@ import javax.ws.rs.core.Response.Status;
 import cz.cvut.fel.wa2.forum.dto.UserDTO;
 import cz.cvut.fel.wa2.forum.service.UserService;
 import cz.cvut.fel.wa2.forum.service.UserServiceImpl;
+import cz.cvut.fel.wa2.forum.websocket.Producer;
 
+import java.io.IOException;
 import java.util.List;
 
 @Path(value = "user")
@@ -37,6 +39,15 @@ public class UserResource {
                                     @HeaderParam("X-Base") String base,
                                     @HeaderParam("X-Offset") String offset
                                     ) {
+
+        try {
+            Producer producer = new Producer("queue");
+            producer.sendMessage("msg");
+            producer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         List result = null;
         int baseParam = service.getCount().intValue();
         int offsetParam = 0;
