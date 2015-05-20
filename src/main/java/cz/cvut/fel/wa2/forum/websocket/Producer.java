@@ -13,6 +13,7 @@ public class Producer extends Endpoint {
 
     public void sendMessage(Serializable object) throws IOException {
         System.out.println("rabbitmq: send message " + object.toString());
-        channel.basicPublish("", queueName, null, SerializationUtils.serialize(object));
+//        channel.basicPublish("logs", queueName, null, SerializationUtils.serialize(object));
+        channel.basicPublish("logs", "", null, SerializationUtils.serialize(object));
     }
 }

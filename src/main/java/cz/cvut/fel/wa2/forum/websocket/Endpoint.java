@@ -19,8 +19,9 @@ public abstract class Endpoint {
         factory.setHost("localhost");
         connection = factory.newConnection();
         channel = connection.createChannel();
+        channel.exchangeDeclare("logs", "fanout");
 
-        channel.queueDeclare(queueName, false, false, false, null);
+//        channel.queueDeclare(queueName, false, false, false, null);
     }
 
 
