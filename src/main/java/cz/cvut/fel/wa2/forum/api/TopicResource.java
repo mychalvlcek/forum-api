@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response.Status;
 
 import cz.cvut.fel.wa2.forum.dto.*;
 import cz.cvut.fel.wa2.forum.service.*;
+import cz.cvut.fel.wa2.forum.websocket.Producer;
 
 import java.util.List;
 
@@ -50,7 +51,15 @@ public class TopicResource {
     @Consumes({MediaType.APPLICATION_JSON})
     @RolesAllowed("admin")
     public Response save(TopicDTO dto) {
-        service.save(dto);
+        Long id = service.save(dto);
+        try {
+            Producer producer = new Producer("queue");
+            System.out.println(id);
+            producer.sendMessage(id);
+            producer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Response.status(Status.OK).entity("Successfully saved").type(MediaType.APPLICATION_JSON).build();
     }
 

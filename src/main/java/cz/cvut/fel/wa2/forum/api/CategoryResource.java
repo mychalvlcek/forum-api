@@ -56,16 +56,6 @@ public class CategoryResource {
     @RolesAllowed("admin")
     public Response save(CategoryDTO dto) {
         Long id = service.save(dto);
-
-        try {
-            Producer producer = new Producer("queue");
-            System.out.println(id);
-            producer.sendMessage(id);
-            producer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         return Response.status(Status.OK).entity("Successfully saved").type(MediaType.APPLICATION_JSON).build();
     }
 

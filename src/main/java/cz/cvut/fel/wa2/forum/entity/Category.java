@@ -2,10 +2,7 @@ package cz.cvut.fel.wa2.forum.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  * Represents category in the system.
@@ -16,6 +13,7 @@ public class Category extends AbstractEntity {
     @Column(nullable = false)
     private String title;
     @OneToMany(mappedBy="category", cascade=CascadeType.REMOVE)
+    @OrderBy("updated DESC")
     private List<Topic> topics;
 
 

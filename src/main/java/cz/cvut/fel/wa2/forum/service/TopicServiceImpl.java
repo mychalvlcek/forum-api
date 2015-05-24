@@ -14,7 +14,7 @@ public class TopicServiceImpl extends AbstractDataAccessService implements Topic
 
     @Override
     public List<TopicDTO> find(Long catId) {
-        return PersistenceTools.getTopicDtos(genericDao.getByProperty("category", genericDao.getById(catId, Category.class), Topic.class));
+        return PersistenceTools.getTopicDtos(genericDao.getByProperty("category", genericDao.getById(catId, Category.class), Topic.class, "e.updated DESC"));
     }
 
     @Override
